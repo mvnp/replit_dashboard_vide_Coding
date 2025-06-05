@@ -17,7 +17,7 @@ export function ChartsSection() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
       {/* Revenue Chart */}
-      <Card className="lg:col-span-2 backdrop-blur-xl bg-white/10 dark:bg-black/20 border-white/20 dark:border-white/10">
+      <Card className="lg:col-span-2 backdrop-blur-xl bg-white/90 dark:bg-black/20 border border-gray-200 dark:border-white/10 shadow-lg">
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white">

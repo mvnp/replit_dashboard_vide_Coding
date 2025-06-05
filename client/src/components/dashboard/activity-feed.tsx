@@ -29,7 +29,7 @@ export function ActivityFeed() {
   const { data: activities, isLoading } = useActivities(4);
 
   return (
-    <Card className="backdrop-blur-xl bg-white/10 dark:bg-black/20 border-white/20 dark:border-white/10">
+    <Card className="backdrop-blur-xl bg-white/90 dark:bg-black/20 border border-gray-200 dark:border-white/10 shadow-lg">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white">

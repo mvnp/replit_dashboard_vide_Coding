@@ -20,7 +20,7 @@ const navigation = [
 
 export function Sidebar() {
   return (
-    <aside className="fixed left-0 top-0 w-64 h-full backdrop-blur-xl bg-white/10 dark:bg-black/20 border-r border-white/20 dark:border-white/10 z-40">
+    <aside className="fixed left-0 top-0 w-64 h-full backdrop-blur-xl bg-white/80 dark:bg-black/20 border-r border-gray-200 dark:border-white/10 z-40 shadow-lg">
       <div className="p-6">
         {/* Logo */}
         <div className="flex items-center space-x-3 mb-8">
@@ -54,7 +54,7 @@ export function Sidebar() {
 
         {/* User Profile */}
         <div className="absolute bottom-6 left-6 right-6">
-          <div className="flex items-center space-x-3 p-3 rounded-xl backdrop-blur-xl bg-white/10 dark:bg-black/20 border border-white/20 dark:border-white/10">
+          <div className="flex items-center space-x-3 p-3 rounded-xl backdrop-blur-xl bg-white/90 dark:bg-black/20 border border-gray-200 dark:border-white/10 shadow-md">
             <img 
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" 
               alt="User avatar" 

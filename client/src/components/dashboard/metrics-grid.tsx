@@ -53,7 +53,7 @@ export function MetricsGrid() {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {Array.from({ length: 4 }).map((_, i) => (
-          <Card key={i} className="backdrop-blur-xl bg-white/10 dark:bg-black/20 border-white/20 dark:border-white/10">
+          <Card key={i} className="backdrop-blur-xl bg-white/90 dark:bg-black/20 border border-gray-200 dark:border-white/10 shadow-lg">
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <Skeleton className="w-12 h-12 rounded-xl" />
@@ -71,7 +71,7 @@ export function MetricsGrid() {
   if (!metrics) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <Card className="backdrop-blur-xl bg-white/10 dark:bg-black/20 border-white/20 dark:border-white/10">
+        <Card className="backdrop-blur-xl bg-white/90 dark:bg-black/20 border border-gray-200 dark:border-white/10 shadow-lg">
           <CardContent className="p-6 text-center">
             <p className="text-gray-600 dark:text-gray-400">No metrics data available</p>
           </CardContent>
@@ -92,7 +92,7 @@ export function MetricsGrid() {
         return (
           <Card 
             key={config.key} 
-            className="backdrop-blur-xl bg-white/10 dark:bg-black/20 border-white/20 dark:border-white/10 hover:scale-105 transition-all duration-300 group"
+            className="backdrop-blur-xl bg-white/90 dark:bg-black/20 border border-gray-200 dark:border-white/10 hover:scale-105 transition-all duration-300 group shadow-lg"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             <CardContent className="p-6">
