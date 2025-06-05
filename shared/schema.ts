@@ -63,6 +63,14 @@ export const insertUserSchema = createInsertSchema(users).pick({
   avatar: true,
 });
 
+export const updateUserSchema = createInsertSchema(users).pick({
+  username: true,
+  email: true,
+  name: true,
+  role: true,
+  avatar: true,
+}).partial();
+
 export const insertDashboardMetricsSchema = createInsertSchema(dashboardMetrics).omit({
   id: true,
   updatedAt: true,
@@ -85,6 +93,7 @@ export const insertRevenueDataSchema = createInsertSchema(revenueData).omit({
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
+export type UpdateUser = z.infer<typeof updateUserSchema>;
 export type DashboardMetrics = typeof dashboardMetrics.$inferSelect;
 export type InsertDashboardMetrics = z.infer<typeof insertDashboardMetricsSchema>;
 export type Transaction = typeof transactions.$inferSelect;

@@ -6,6 +6,7 @@ import {
   revenueData,
   type User, 
   type InsertUser,
+  type UpdateUser,
   type DashboardMetrics,
   type InsertDashboardMetrics,
   type Transaction,
@@ -19,7 +20,10 @@ import {
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
+  getAllUsers(): Promise<User[]>;
   createUser(user: InsertUser): Promise<User>;
+  updateUser(id: number, user: UpdateUser): Promise<User>;
+  deleteUser(id: number): Promise<boolean>;
   getDashboardMetrics(): Promise<DashboardMetrics | undefined>;
   updateDashboardMetrics(metrics: InsertDashboardMetrics): Promise<DashboardMetrics>;
   getTransactions(limit?: number): Promise<Transaction[]>;
@@ -58,18 +62,44 @@ export class MemStorage implements IStorage {
   }
 
   private initializeData() {
-    // Initialize sample user
-    const user: User = {
-      id: this.currentUserId++,
-      username: "johndoe",
-      password: "hashedpassword",
-      email: "john@company.com",
-      name: "John Doe",
-      role: "admin",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
-      createdAt: new Date(),
-    };
-    this.users.set(user.id, user);
+    // Initialize sample users
+    const sampleUsers = [
+      {
+        id: this.currentUserId++,
+        username: "johndoe",
+        password: "hashedpassword",
+        email: "john@company.com",
+        name: "John Doe",
+        role: "admin",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
+        createdAt: new Date(),
+      },
+      {
+        id: this.currentUserId++,
+        username: "sarahwilson",
+        password: "hashedpassword",
+        email: "sarah@company.com",
+        name: "Sarah Wilson",
+        role: "user",
+        avatar: "https://images.unsplash.com/photo-1494790108755-2616b332c63d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
+        createdAt: new Date(),
+      },
+      {
+        id: this.currentUserId++,
+        username: "mikechen",
+        password: "hashedpassword",
+        email: "mike@company.com",
+        name: "Michael Chen",
+        role: "manager",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
+        createdAt: new Date(),
+      }
+    ];
+
+    sampleUsers.forEach((userData) => {
+      const user: User = userData;
+      this.users.set(user.id, user);
+    });
 
     // Initialize dashboard metrics
     this.dashboardMetrics = {
@@ -196,12 +226,38 @@ export class MemStorage implements IStorage {
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.currentUserId++;
     const user: User = { 
-      ...insertUser, 
+      ...insertUser,
+      role: insertUser.role || "user",
+      avatar: insertUser.avatar || null,
       id,
       createdAt: new Date(),
     };
     this.users.set(id, user);
     return user;
+  }
+
+  async getAllUsers(): Promise<User[]> {
+    return Array.from(this.users.values())
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async updateUser(id: number, updateData: UpdateUser): Promise<User> {
+    const existingUser = this.users.get(id);
+    if (!existingUser) {
+      throw new Error(`User with id ${id} not found`);
+    }
+
+    const updatedUser: User = {
+      ...existingUser,
+      ...updateData,
+    };
+    
+    this.users.set(id, updatedUser);
+    return updatedUser;
+  }
+
+  async deleteUser(id: number): Promise<boolean> {
+    return this.users.delete(id);
   }
 
   async getDashboardMetrics(): Promise<DashboardMetrics | undefined> {
