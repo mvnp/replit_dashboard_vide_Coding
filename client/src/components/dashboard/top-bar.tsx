@@ -26,7 +26,7 @@ export function TopBar() {
           <Input
             type="text"
             placeholder="Search..."
-            className="pl-10 pr-4 py-2 w-64 bg-white/10 dark:bg-white/5 backdrop-blur-sm border-white/20 focus:border-primary-500 text-gray-900 dark:text-white placeholder:text-gray-500"
+            className="pl-10 pr-4 py-2 w-64 bg-white/90 dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/20 focus:border-primary-500 text-gray-900 dark:text-white placeholder:text-gray-500 shadow-md"
           />
         </div>
         
@@ -45,7 +45,7 @@ export function TopBar() {
           variant="ghost" 
           size="sm" 
           onClick={toggleTheme}
-          className="p-2 rounded-xl backdrop-blur-xl bg-white/10 dark:bg-black/20 border border-white/20 dark:border-white/10 hover:bg-white/20 dark:hover:bg-white/10"
+          className="p-2 rounded-xl backdrop-blur-xl bg-white/90 dark:bg-black/20 border border-gray-200 dark:border-white/10 hover:bg-white/95 dark:hover:bg-white/10 shadow-md"
         >
           {theme === "dark" ? (
             <Sun className="w-5 h-5 text-gray-600 dark:text-gray-300" />

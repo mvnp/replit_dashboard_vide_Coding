@@ -65,7 +65,7 @@ export function DataTable() {
           </CardTitle>
           <div className="flex items-center space-x-3">
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-32 bg-white/10 border-white/20">
+              <SelectTrigger className="w-32 bg-white/90 dark:bg-white/10 border border-gray-200 dark:border-white/20 shadow-md">
                 <Filter className="w-4 h-4 mr-2" />
                 <SelectValue />
               </SelectTrigger>
@@ -84,7 +84,7 @@ export function DataTable() {
                 placeholder="Search transactions..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 w-64 bg-white/10 border-white/20 text-gray-900 dark:text-white placeholder:text-gray-500"
+                className="pl-10 w-64 bg-white/90 dark:bg-white/10 border border-gray-200 dark:border-white/20 text-gray-900 dark:text-white placeholder:text-gray-500 shadow-md"
               />
             </div>
             
