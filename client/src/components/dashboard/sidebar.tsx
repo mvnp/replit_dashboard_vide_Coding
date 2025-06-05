@@ -9,16 +9,19 @@ import {
   MoreHorizontal
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "wouter";
 
 const navigation = [
-  { name: "Dashboard", icon: LayoutDashboard, current: true },
-  { name: "Analytics", icon: BarChart3, current: false },
-  { name: "Customers", icon: Users, current: false },
-  { name: "Billing", icon: CreditCard, current: false },
-  { name: "Settings", icon: Settings, current: false },
+  { name: "Dashboard", icon: LayoutDashboard, href: "/", current: true },
+  { name: "Users", icon: Users, href: "/users", current: false },
+  { name: "Analytics", icon: BarChart3, href: "/analytics", current: false },
+  { name: "Billing", icon: CreditCard, href: "/billing", current: false },
+  { name: "Settings", icon: Settings, href: "/settings", current: false },
 ];
 
 export function Sidebar() {
+  const [location] = useLocation();
+
   return (
     <aside className="fixed left-0 top-0 w-64 h-full backdrop-blur-xl bg-white/80 dark:bg-black/20 border-r border-gray-200 dark:border-white/10 z-40 shadow-lg">
       <div className="p-6">
@@ -34,20 +37,22 @@ export function Sidebar() {
         <nav className="space-y-2">
           {navigation.map((item) => {
             const Icon = item.icon;
+            const isActive = location === item.href || (item.href === "/" && location === "/");
             return (
-              <Button
-                key={item.name}
-                variant={item.current ? "default" : "ghost"}
-                className={cn(
-                  "w-full justify-start h-12 rounded-xl text-left font-medium transition-all duration-200",
-                  item.current 
-                    ? "bg-primary-500 text-white shadow-lg shadow-primary-500/30" 
-                    : "text-gray-600 dark:text-gray-300 hover:bg-white/10 dark:hover:bg-white/5"
-                )}
-              >
-                <Icon className="w-5 h-5 mr-3" />
-                {item.name}
-              </Button>
+              <Link key={item.name} href={item.href}>
+                <Button
+                  variant={isActive ? "default" : "ghost"}
+                  className={cn(
+                    "w-full justify-start h-12 rounded-xl text-left font-medium transition-all duration-200",
+                    isActive 
+                      ? "bg-primary-500 text-white shadow-lg shadow-primary-500/30" 
+                      : "text-gray-600 dark:text-gray-300 hover:bg-white/10 dark:hover:bg-white/5"
+                  )}
+                >
+                  <Icon className="w-5 h-5 mr-3" />
+                  {item.name}
+                </Button>
+              </Link>
             );
           })}
         </nav>
